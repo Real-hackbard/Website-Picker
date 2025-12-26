@@ -67,3 +67,59 @@ begin
 end;
 ```
 
+# URL Extracting:
+After the HTML code has been downloaded, a parse function is applied to extract the URL links.
+
+```pascal
+function ExtractFileNameToURL ( URL : string ) : string;
+var
+    Temp : string;
+    Position : Integer;
+begin
+    Position := Length( URL ) - 1;
+    if Pos('/', URL) <> 0 then
+    begin
+        while (Copy( URL, Position, 1 ) <> '/' ) do Dec(Position);
+        Temp := RightStr( URL, (Length(URL) - Position ) )
+    end else
+        Temp := Trim(URL);
+    Result := Temp;
+end;
+
+function  ExtractPathURLToCompleteURL ( URL : string ) : string;
+var
+    Temp : string;
+    Position : Integer;
+begin
+    if RightStr( Trim(URL) , 1) = '/' then
+        Temp := URL
+    else begin
+        Position := Length( URL );
+        if Pos( '/', URL ) <> 0 then
+        begin
+            while ( Copy( URL, Position, 1 ) <> '/' ) do dec( Position );
+            Temp := LeftStr( URL, Position )
+        end else
+            Temp := Trim( URL );
+    end;
+    Result := Trim(Temp);
+end;
+
+function TakeBeforeFolder( PathURL : string ) : string;
+var
+    temp : string;
+    Position : integer;
+begin
+    if RightStr( Trim(PathURL) , 1) = '/' then
+        Temp := Copy( PathURL, 1, Length(PathURL) - 1 );
+        Position := Length( Temp );
+
+        if Pos( '/', Temp ) <> 0 then
+        begin
+            while ( Copy( Temp, Position, 1 ) <> '/' ) do dec( Position );
+            Temp := LeftStr( Temp, Position  )
+        end else
+            Temp := Trim( Temp );
+    Result := Trim(Temp);
+end;
+```
