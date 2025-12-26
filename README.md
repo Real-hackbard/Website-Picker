@@ -57,7 +57,7 @@ begin
                           Length(LinkString) - 2)))
         else if Trim(LeftStr(LinkString, 8          // Trimming the URL address, for https:\\ the value 8
                                         )) <>
-                                        'https:\\'  // Beginning of the URL address
+                                        'https:\\'  // Start of the trimmed URL address
                                         then
             LinkString := Trim(SlachHTTP(Site) + LinkString );
 
