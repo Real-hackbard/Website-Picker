@@ -26,7 +26,44 @@ In today's digital world, downloading images is far more than a simple right-cli
 
 While modern browsers offer a basic "save image as" function, these tools go far beyond that by enabling batch downloads (bulk downloads) that can often capture hundreds of images with just one click.
 
+# Batch Download:
+Parse the HTML page and retrieve everything between ```START_STRING``` and ```END_STRING```
 
+The ```MyHTTPs.pas file contains``` ```https:\\``` as the transfer protocol, which can be changed if necessary. It is important to ensure that the Trim value matches the characters.
 
+```pascal
+procedure TPicker.ParseHtml;
+var
+    chain  : AnsiString;
+    LinkString   : String;
+const
+    IMG_BALISE = 'src="'; //  Target of the image address
+begin
+    Links.Clear;
+    chain := LowerCase(Trim(BufferPageWeb));
+    while pos( IMG_BALISE, chain ) <> 0 do
+    begin
+        chain := right(IMG_BALISE, chain);
+        LinkString   := Trim(left('"', chain ));
+        if Trim(LeftStr(LinkString, 2 ) ) = '..' then
+            LinkString := Trim(SlachHTTP(TakeBeforeFolder(Site)) +
+                                    Trim(Copy(LinkString,
+                                    4,
+                                    Length(LinkString) - 3)))
+        else if Trim(LeftStr(LinkString, 1 ) ) = '.' then
+            LinkString := Trim(SlachHTTP(Site) +
+                          Trim(Copy(LinkString,
+                          3,
+                          Length(LinkString) - 2)))
+        else if Trim(LeftStr(LinkString, 8          // Trimming the URL address, for https:\\ the value 8
+                                        )) <>
+                                        'https:\\'  // Beginning of the URL address
+                                        then
+            LinkString := Trim(SlachHTTP(Site) + LinkString );
 
+        Links.Add(LinkString);
+        Application.ProcessMessages
+    end;
+end;
+```
 
