@@ -123,3 +123,25 @@ begin
     Result := Trim(Temp);
 end;
 ```
+
+# backslash function:
+It was often the case that images on websites were only accessible if a backslash was added to the end of the URL. Therefore, both variations should be tested to potentially achieve the desired result.
+
+```pascal
+function Slach( path : string ) : string;
+begin
+    if Copy( path, length(path), 1 ) <> '\' then
+        Result := Trim(path) + '\'
+    else
+        Result := Trim(path);
+end;
+
+{ Add '/' to the end of the URL if it is not already there }
+function SlachHTTP( URL : string ) : string;
+begin
+    if Copy( URL, length(URL), 1 ) <> '/' then
+        Result := Trim(URL) + '/'
+    else
+        Result := Trim(URL);
+end;
+```
