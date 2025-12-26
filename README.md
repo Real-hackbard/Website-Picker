@@ -9,3 +9,19 @@
 ![License](https://github.com/user-attachments/assets/ff71a38b-8813-4a79-8774-09a2f3893b48) ![Freeware](https://github.com/user-attachments/assets/1fea2bbf-b296-4152-badd-e1cdae115c43)  
 
 </br>
+
+Websie Picker can find and download the possible images of a website. But it also includes files like JavaScript or log files that can be found.
+
+Of course, many images are not directly accessible via a URL; every website is structured and designed differently. These are accessible images that can be downloaded automatically.
+
+If no images are found, you can try adding a / to the end of the link to potentially find files that were not found.
+
+
+
+
+
+
+
+
+
+
