@@ -16,6 +16,8 @@ Of course, many images are not directly accessible via a URL; every website is s
 
 If no images are found, you can try adding a / to the end of the link to potentially find files that were not found.
 
+</br>
+
 # Update modified by @[limelect](https://github.com/limelect)
 
 </br>
